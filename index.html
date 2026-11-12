@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121d1a">
+  <meta name="description" content="Explore raças de cachorros, descubra fotos e salve suas favoritas.">
+  <title>Dog Atlas | Explore, descubra, salve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Dog Atlas, início"><span class="brand-icon">✳</span><span>DOG<span class="brand-accent">ATLAS</span></span></a>
+      <nav class="topnav" aria-label="Navegação principal">
+        <button class="nav-link is-active" id="nav-explorar" type="button">Explorar</button>
+        <button class="nav-link" id="nav-favoritos" type="button">Favoritos <span id="nav-fav-count" class="nav-count">0</span></button>
+      </nav>
+      <a class="topbar-credit" href="https://dog.ceo/dog-api/documentation" target="_blank" rel="noopener noreferrer">Powered by Dog CEO ↗</a>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> SEU UNIVERSO CANINO</span>
+          <h1 id="hero-title">Cada raça.<br><em>Uma descoberta.</em></h1>
+          <p>Explore o mundo dos cães, descubra novas raças e crie uma coleção com suas fotografias favoritas.</p>
+          <div class="hero-actions">
+            <button id="hero-explorar" class="btn btn-light" type="button">Começar a explorar <span aria-hidden="true">↗</span></button>
+            <button id="surpreenda" class="btn btn-outline" type="button">Me surpreenda <span aria-hidden="true">✳</span></button>
+          </div>
+          <div class="hero-stats"><span><strong id="total-racas">—</strong><small>raças catalogadas</small></span><span class="stat-divider"></span><span><strong id="total-salvos">0</strong><small>fotos favoritas</small></span></div>
+        </div>
+        <div class="hero-visual" aria-label="Imagem ilustrativa de um cachorro">
+          <img id="hero-image" src="https://i.pinimg.com/originals/93/4e/6a/934e6a0f0aab64acf2d84951fa348946.jpg" alt="Cachorro em destaque" fetchpriority="high">
+          <div class="hero-photo-caption"><span class="sparkle">✳</span><div><strong>Descubra seu próximo favorito</strong><small>Uma coleção feita por você</small></div></div>
+        </div>
+      </section>
+
+      <section class="workspace" id="explorador" aria-label="Explorador de cachorros">
+        <div class="section-heading"><div><span class="overline">EXPLORE A COLEÇÃO</span><h2>Encontre seu próximo <em>favorito.</em></h2></div><span class="heading-note">01 / EXPLORE</span></div>
+        <div class="workspace-grid">
+          <aside class="filter-panel" aria-labelledby="filter-title">
+            <div class="filter-heading"><span class="filter-heading-icon">⚑</span><div><h3 id="filter-title">Refine sua busca</h3><p>Encontre exatamente o que procura.</p></div></div>
+            <div class="field"><label for="racas">Raça</label><select id="racas"><option value="">Todas as raças</option></select></div>
+            <div class="field"><label for="subracas">Sub-raça</label><select id="subracas" disabled><option value="">Todas as sub-raças</option></select><small class="field-hint">Disponível quando a raça possui variedades.</small></div>
+            <div class="field"><label for="quantidade">Quantidade de fotos <strong id="quantidade-valor">6</strong></label><input id="quantidade" type="range" min="1" max="10" value="6"><div class="range-labels"><span>1 foto</span><span>10 fotos</span></div></div>
+            <div class="filter-buttons"><button id="buscar" class="btn btn-primary" type="button">Gerar fotografias <span aria-hidden="true">↗</span></button><button id="todas" class="btn btn-secondary" type="button">Ver coleção completa</button></div>
+            <p class="filter-footnote">Coleções completas são exibidas em páginas de 12 fotos. Selecione uma raça para habilitar essa função.</p>
+          </aside>
+          <div class="results-panel">
+            <div class="results-top"><div><span class="overline" id="modo-label">DESCOBERTAS</span><h3 id="titulo-resultados">Galeria de descobertas</h3><p id="subtitulo-resultados">Uma seleção especial para você explorar.</p></div><div class="results-tools"><span class="result-count" id="contador-resultados">0 fotos</span><button class="icon-button" type="button" id="recarregar" title="Gerar novamente" aria-label="Gerar novamente">↻</button></div></div>
+            <p class="feedback" id="mensagem" role="status" aria-live="polite"></p>
+            <div id="galeria" class="photo-grid" aria-live="off"></div>
+            <div class="empty-state" id="estado-vazio" hidden><span class="empty-icon">✳</span><h3 id="vazio-titulo">Ainda não há fotos por aqui</h3><p id="vazio-texto">Experimente gerar algumas fotografias para começar.</p></div>
+            <div class="pagination" id="paginacao" hidden><button id="anterior" class="page-btn" type="button">← Anterior</button><span id="indicador-pagina">Página 1 de 1</span><button id="proximo" class="page-btn" type="button">Próxima →</button></div>
+          </div>
+        </div>
+      </section>
+      <section class="closing"><span class="overline">SUA COLEÇÃO, SEU JEITO</span><p>Os melhores encontros começam com uma <em>descoberta.</em></p><span>Desenvolvido com a Dog CEO API · HTML + CSS + JavaScript</span></section>
+    </main>
+    <footer><span class="footer-brand">✳ DOGATLAS</span><span>Feito para explorar, aprender e se encantar.</span><a href="https://dog.ceo/dog-api/documentation" target="_blank" rel="noopener noreferrer">Documentação da API ↗</a></footer>
+  </div>
+
+  <dialog id="modal-foto" class="image-modal" aria-label="Visualizar fotografia">
+    <div class="modal-top"><strong id="modal-titulo">Fotografia</strong><button id="fechar-modal" class="modal-close" type="button" aria-label="Fechar">×</button></div>
+    <img id="modal-imagem" alt="Foto ampliada de cachorro">
+    <div class="modal-bottom"><span id="modal-subtitulo"></span><button id="modal-favoritar" class="btn btn-primary" type="button">Salvar favorito</button></div>
+  </dialog>
+</body>
+</html>
